@@ -1,1 +1,1 @@
-node_1_num,node_1_name,node_2_num,node_2_name,edge_cost,edge_time
+node_1_num,node_2_num,edge_cost,edge_time,edge_distance
