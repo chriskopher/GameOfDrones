@@ -12,6 +12,6 @@ weightings = 'data/edge_types.csv';
 files = {names edges weightings};
 
 %Run the graph function
-run(graph(files))
+graph(files,true);
 
 rmpath ./src
