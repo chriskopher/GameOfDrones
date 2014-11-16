@@ -10,14 +10,17 @@ function graph_m = graph(files,DEBUG)
     % Format of edges is: "node1num,node2num,edge_type,edge_distance"
     % Format of weightings is: "edge_type,price_per_km,speed"
     names = read_mixed_csv(files{1},DELIM);
+    names = names(2:end,:);
     if DEBUG
-        fprintf('names ran\n');
+        fprintf('names ran:\n');
     end
     edges = read_mixed_csv(files{2},DELIM);
+    edges = edges(2:end,:);
     if DEBUG
         fprintf('edges ran\n');
     end
     weightings = read_mixed_csv(files{3},DELIM);
+    weightings = weightings(2:end,:);
     if DEBUG
         fprintf('weightings ran\n');
     end
