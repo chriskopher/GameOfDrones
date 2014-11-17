@@ -36,8 +36,17 @@ function graph_m = graph(edge_file,weightings_file,price_weight,time_weight,DEBU
     end
     
 %% Creation of graph
-    %Set graph_m to an nxn matrix of -1's to do work on it.
+    % Set graph_m to an nxn matrix of -1's to do work on it.
     n = max(cell2mat(edges(:,2)));
     graph_m = -1 .* ones(n);
     
+    % Iterate through the edges matrix and assign the price and time values
+    for i = 1:length(edges)
+        % Holds the values of the weightings type associated with this row
+        type_vector = weightings(find(strcmp(cell2mat(edges(i,3)), ...
+            weightings)),:);
+        % Set the values of the edges array based on the distances
+        edges{i,5} = edges{i,4} .* type_vector{i,2};
+        edges{i,6} = edges{i,4} .* type_vector{i,3};
+    end
 end
