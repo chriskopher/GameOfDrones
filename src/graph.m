@@ -25,5 +25,5 @@ function graph_m = graph(files,DEBUG)
     if DEBUG
         fprintf('weightings ran\n');
     end
-    graph_m = 0;
+    graph_m = names;
 end
