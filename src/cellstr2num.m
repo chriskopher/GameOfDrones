@@ -8,7 +8,7 @@ function matrix = cellstr2num(cell,column)
         val = str2double(cell2mat(matrix(i,column)));
         % Change the value only if it is not NaN
         if ~isnan(val)
-            matrix(i,column) = num2cell(val)
+            matrix(i,column) = num2cell(val);
         end
     end
 end

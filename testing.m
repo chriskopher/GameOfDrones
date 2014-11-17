@@ -8,10 +8,8 @@ addpath ./src
 names = 'data/california_names.csv';
 edges = 'data/california.csv';
 weightings = 'data/edge_types.csv';
-    % Put the files in a cell
-files = {names edges weightings};
 
 %Run the graph function
-graph_m = graph(files,true);
+graph_m2 = graph(edges,weightings,50,50,true);
 
 rmpath ./src
