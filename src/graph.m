@@ -16,6 +16,7 @@ function graph_m = graph(edge_file,weightings_file,price_weight,time_weight,DEBU
     DELIM = ',';
     HEADERS = 1;
     
+    
     % Read the CSV files with the graph information into a matrix
     % Format of edges is: "node1num,node2num,edge_type,edge_distance"
     % Format of weightings is: "edge_type,price_per_km,speed"
@@ -53,9 +54,13 @@ function graph_m = graph(edge_file,weightings_file,price_weight,time_weight,DEBU
     
     % Go through graph_m and start setting the values as the lowest
     % weighted average.
-    for i = 1:n
-        for j = 1:n
-            
-        end
+    for k = 1:size(edges,1)
+        edges(k,1) = i;
+        edges(k,2)= j;
+            if ((weighted_avg(price_weight, edges(k,5), ...
+            time_weight, edges(k,6)) < graph_m(i,j) || ...
+            graph_m(i,j) = -1)
+            graph_m(i,j) =  weighted_avg(price_weight, ...
+            edges(k,5), time_weight, edges(k,6));
     end
 end
