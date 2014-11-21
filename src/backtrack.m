@@ -1,6 +1,6 @@
 function node = backtrack(current_node,memory_matrix)
 
-if (current_node == 1)
+if (current_node == memory_matrix(1))
     node = memory_matrix(2);
 else
 {
