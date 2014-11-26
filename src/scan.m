@@ -12,4 +12,7 @@ function column = scan(vector)
     
     % Get the minimum value and set column to the column location.
     [minval, column] = min(vector);
+    if minval == Inf
+        column = -1;
+    end
 end
