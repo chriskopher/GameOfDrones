@@ -6,10 +6,10 @@ addpath ./src
 
 %Define the files to read in order
 names = 'data/california_names.csv';
-edges = 'data/california.csv';
-weightings = 'data/edge_types.csv';
+edges = 'data/test_graph.csv';
+weightings = 'data/test_edges.csv';
 
 %Run the graph function
-graph_m2 = graph(edges,weightings,50,50,true);
+graph_m = graph(edges,weightings,50,50,true);
 
 rmpath ./src
