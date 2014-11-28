@@ -1,6 +1,5 @@
 edge_type,price_$/km,speed_km/h
-truck,200,80
-train,400,100
-boat,40,60
-plane,1000,500
-drone,450,100
+truck,0.06,68
+train,0.14,80
+plane,0.27,460
+drone,2.78,80
