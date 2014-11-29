@@ -1,4 +1,5 @@
-function graph_m = graph(graph_file,edge_type_file,price_weight,time_weight,DEBUG)
+function [graph_m,cost_m,time_m] = graph(graph_file,edge_type_file,...
+    price_weight,time_weight,DEBUG)
 %% File setup
 % Reads files and prepares initial variables and matrices.
     % Initialization of variables if not passed as arguments.
@@ -29,26 +30,28 @@ function graph_m = graph(graph_file,edge_type_file,price_weight,time_weight,DEBU
     edge_types = edge_types((HEADERS+1):end,:);
     edge_types = cellstr2num(edge_types,2:3);
     if DEBUG
-        fprintf('weightings file read correctly.\n');
+        fprintf('edge_types file read correctly.\n');
     end
     
 %% Creation of graph
     % Set graph_m to an nxn matrix of -1's to do work on it.
     n = max(cell2mat(graph_values(:,2)));
     graph_m = -1 .* ones(n);
+    cost_m = -1*ones(n);
+    time_m = -1*ones(n);
     if DEBUG
         fprintf('\nSet graph_m to a %dx%d matrix\n',n,n);
     end
     
     % Iterate through the edges matrix and assign the price and time values
-    for i = 1:length(graph_values)
+    for i = 1:size(graph_values,1)
         % Holds the values of the weightings type associated with this row
 
         type_vector = edge_types(find(strcmp(cell2mat(graph_values(i,3)), ...
             edge_types)),:);
         % Set the values of the edges array based on the distances
         graph_values{i,5} = graph_values{i,4} * type_vector{1,2};
-        graph_values{i,6} = graph_values{i,4} * type_vector{1,3};
+        graph_values{i,6} = graph_values{i,4} / type_vector{1,3};
     end
     if DEBUG
         fprintf('\nThis is edges after adding price and time columns:');
@@ -77,8 +80,18 @@ function graph_m = graph(graph_file,edge_type_file,price_weight,time_weight,DEBU
                fprintf('Setting graph at (%d,%d) and (%d,%d) to %d\n',i,...
                    j,j,i,weighted_val);
            end
+           % Find the values for cost and time of the edge to fill stuff in
+           cost = cell2mat(graph_values(k,5));
+           time = cell2mat(graph_values(k,6));
+           % Fill in the weighted matrix
            graph_m(i,j) = weighted_val;
            graph_m(j,i) = weighted_val;
+           % Fill in the cost matrix values
+           cost_m(i,j) = cost;
+           cost_m(j,i) = cost;
+           % Fill in the time matrix values
+           time_m(i,j) = time;
+           time_m(j,i) = time;
         end
     end
 end

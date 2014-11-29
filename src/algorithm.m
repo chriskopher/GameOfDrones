@@ -1,4 +1,4 @@
-function [path, cost] = algorithm(graph,start_node,end_node)
+function path = algorithm(graph,start_node,end_node)
 % Initialize the global algorithm variables
     current_node = start_node;
     done = false;
@@ -37,5 +37,4 @@ function [path, cost] = algorithm(graph,start_node,end_node)
     end
     % Clean the memory of all redundancies and return it as the path.
     path = clean_memory(memory_matrix);
-    cost = get_cost(path,graph);
 end
